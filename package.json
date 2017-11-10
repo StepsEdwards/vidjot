@@ -1,0 +1,22 @@
+{
+  "name": "vidjot",
+  "version": "1.0.0",
+  "description": "an application that allows you to add and brainstorm ideas for future video projects",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StepsEdwards/vidjot.git"
+  },
+  "author": "Stephens Jean-Jacques",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StepsEdwards/vidjot/issues"
+  },
+  "homepage": "https://github.com/StepsEdwards/vidjot#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
