@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
@@ -29,6 +30,8 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Method Override Middleware
+app.use(methodOverride('_method'));
 
 // Index Route
 app.get('/', (req, res) => {
@@ -100,7 +103,32 @@ app.post('/ideas', (req, res) => {
                 res.redirect('/ideas');
             })
     }
-})
+});
+
+// Edit Form Process
+app.put('/ideas/:id', (req, res) => {
+    Idea.findOne({
+        _id: req.params.id
+    })
+    .then(idea => {
+        // new values
+        idea.title = req.body.title;
+        idea.details = req.body.details;
+
+        idea.save()
+            .then(idea => {
+                res.redirect('/ideas');
+            })
+    });
+});
+
+// Delete Idea
+app.delete('/ideas/:id', (req, res) =>{
+    Idea.remove({_id: req.params.id})
+        .then(() => {
+            res.redirect('/ideas');
+        });
+});
 
 const port = 5000;
 
