@@ -10,6 +10,7 @@ const app = express();
 
 // Load Routes
 const ideas = require('./routes/ideas');
+const users = require('./routes/users');
 
 // Map Global Promise (gets rid of deprecation warning)
 mongoose.Promise = global.Promise;
@@ -65,20 +66,9 @@ app.get('/about', (req, res) => {
     res.render('about');
 });
 
-
-
-// User Login Route
-app.get('/users/login', (req, res) => {
-    res.send('login');
-});
-
-// Registration Route
-app.get('users/register', (req, res) =>{
-    res.send('register');
-});
-
-// Use Idea Routes
+// Use Routes
 app.use('/ideas', ideas);
+app.use('/users', users);
 
 const port = 5000;
 
