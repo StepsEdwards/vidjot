@@ -26,4 +26,15 @@ module.exports = function(passport){
             })
         })
     }));
+
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(function(id, done){
+        // 'findById' is fine since Mongoose has that function, but would have to change if using another ORM
+        User.findById(id, function(err, user){
+            done(err, user);
+        });
+    })
 }
